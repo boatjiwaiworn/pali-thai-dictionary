@@ -34,9 +34,22 @@ const thaiToSinh = new Map([
 
 function thaiToSinhala(text) {
   if (!text) return text;
+  // Reorder leading vowels (เ,โ come before consonant in Thai but after in Sinhala)
   let t = text.replace(/([เโ])([ก-ฮ])/g, '$2$1');
   let result = '';
   for (const ch of t) result += thaiToSinh.get(ch) || ch;
+  
+  // Merge อ + vowel sign → independent Sinhala vowel
+  // In Thai Pali, อ is a vowel carrier; combined with vowel marks it forms independent vowels
+  result = result
+    .replace(/අා/g, 'ආ')   // อา → ā
+    .replace(/අි/g, 'ඉ')    // อิ → i
+    .replace(/අී/g, 'ඊ')    // อี → ī
+    .replace(/අු/g, 'උ')    // อุ → u
+    .replace(/අූ/g, 'ඌ')    // อู → ū
+    .replace(/අෙ/g, 'එ')    // เอ → e
+    .replace(/අො/g, 'ඔ');   // โอ → o
+  
   return result;
 }
 
