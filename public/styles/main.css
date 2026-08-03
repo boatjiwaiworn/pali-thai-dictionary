@@ -106,6 +106,46 @@ body {
 }
 #searchInput:focus { border-color: var(--accent-color); }
 
+.dict-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 2px;
+}
+
+.filter-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.dict-pill {
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-family: inherit;
+    font-weight: 500;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.dict-pill:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.dict-pill.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
 .theme-toggle {
     background: transparent;
     border: none;

@@ -24,8 +24,9 @@ app.post('/api/dict', (req, res) => {
   try {
     const word = req.body.word || req.body.query || req.body.term || '';
     const limit = req.body.limit || 200;
+    const dicts = req.body.dicts || null;
     if (!word) return res.status(400).json({ error: 'word is required' });
-    const results = searchDict(word, limit);
+    const results = searchDict(word, limit, dicts);
     res.json(results);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -36,8 +37,9 @@ app.post('/api/reverse', (req, res) => {
   try {
     const term = req.body.term || req.body.query || req.body.word || '';
     const limit = req.body.limit || 200;
+    const dicts = req.body.dicts || null;
     if (!term) return res.status(400).json({ error: 'term is required' });
-    const results = reverseSearchDict(term, limit);
+    const results = reverseSearchDict(term, limit, dicts);
     res.json(results);
   } catch (error) {
     res.status(500).json({ error: error.message });

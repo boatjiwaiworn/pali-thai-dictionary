@@ -62,16 +62,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const dictPills = document.querySelectorAll('.dict-pill');
+    const allPill = document.querySelector('.dict-pill[data-dict="ALL"]');
+    const individualPills = document.querySelectorAll('.dict-pill:not([data-dict="ALL"])');
+
+    // Dict Filter Logic
+    dictPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            const dictCode = pill.dataset.dict;
+            if (dictCode === 'ALL') {
+                const isAllActive = allPill.classList.contains('active');
+                if (!isAllActive) {
+                    dictPills.forEach(p => p.classList.add('active'));
+                }
+            } else {
+                pill.classList.toggle('active');
+                const activeIndiv = document.querySelectorAll('.dict-pill:not([data-dict="ALL"]).active');
+                if (activeIndiv.length === individualPills.length) {
+                    allPill.classList.add('active');
+                } else {
+                    allPill.classList.remove('active');
+                }
+                if (activeIndiv.length === 0) {
+                    dictPills.forEach(p => p.classList.add('active'));
+                }
+            }
+            
+            const q = searchInput.value.trim();
+            if (q.length > 0) performSearch(q);
+        });
+    });
+
+    const getSelectedDicts = () => {
+        if (allPill && allPill.classList.contains('active')) return null;
+        const selected = [];
+        individualPills.forEach(p => {
+            if (p.classList.contains('active')) selected.push(p.dataset.dict);
+        });
+        return selected.length > 0 ? selected : null;
+    };
+
     const performSearch = async (query) => {
         showLoading();
         try {
             const endpoint = currentMode === 'dict' ? '/api/dict' : '/api/reverse';
             const bodyKey = currentMode === 'dict' ? 'word' : 'term';
+            const selectedDicts = getSelectedDicts();
             
             const resp = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ [bodyKey]: query, limit: 200 })
+                body: JSON.stringify({ [bodyKey]: query, limit: 200, dicts: selectedDicts })
             });
             const data = await resp.json();
             if (data.error) throw new Error(data.error);

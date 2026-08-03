@@ -97,11 +97,12 @@ function makeFlexPattern(sinhWord) {
   return pattern + '%';
 }
 
-export function searchDict(word, limit = 200) {
+export function searchDict(word, limit = 200, dicts = null) {
   const sinhWord = thaiToSinhala(word);
   const pattern = makeFlexPattern(sinhWord);
   const results = [];
   for (const { short, db } of dictDbs) {
+    if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
     const rows = execQuery(db, 
       'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit', 
       { $term: pattern, $limit: limit }
@@ -111,10 +112,11 @@ export function searchDict(word, limit = 200) {
   return results;
 }
 
-export function reverseSearchDict(thaiTerm, limit = 200) {
+export function reverseSearchDict(thaiTerm, limit = 200, dicts = null) {
   const pattern = `%${thaiTerm}%`;
   const results = [];
   for (const { short, db } of dictDbs) {
+    if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
     const rows = execQuery(db,
       'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit',
       { $term: pattern, $limit: limit }
