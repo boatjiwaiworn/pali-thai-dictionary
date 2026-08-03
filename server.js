@@ -45,7 +45,7 @@ app.post('/api/reverse', (req, res) => {
 });
 
 // Fallback: serve index.html for any unmatched routes
-app.get('*', (req, res) => {
+app.get('{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
