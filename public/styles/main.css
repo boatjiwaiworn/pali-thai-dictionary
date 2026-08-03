@@ -106,12 +106,22 @@ body {
 }
 #searchInput:focus { border-color: var(--accent-color); }
 
+.dict-filters-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    position: relative;
+    width: 100%;
+}
+
 .dict-filters {
     display: flex;
     align-items: center;
     gap: 6px;
     flex-wrap: wrap;
     padding-top: 2px;
+    flex: 1;
 }
 
 .filter-label {
@@ -144,6 +154,69 @@ body {
     background-color: var(--accent-color);
     color: #ffffff;
     border-color: var(--accent-color);
+}
+
+.info-btn-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.info-btn {
+    background: transparent;
+    border: none;
+    color: #e53e3e;
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.info-btn:hover {
+    color: #c53030;
+    transform: scale(1.1);
+}
+
+.info-popover {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: 320px;
+    background-color: #ffffff;
+    border: 1px solid #1a1a1a;
+    border-radius: 6px;
+    padding: 12px 14px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    color: #1a1a1a;
+    font-family: inherit;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.info-popover.hidden {
+    display: none;
+}
+
+.popover-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1a202c;
+}
+
+.popover-content div {
+    margin-bottom: 3px;
+    color: #2d3748;
+}
+
+.popover-content strong {
+    color: #1a202c;
+    font-weight: 600;
 }
 
 .theme-toggle {

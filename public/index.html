@@ -26,19 +26,42 @@
                 <i class="fa-solid fa-search search-icon"></i>
                 <input type="text" id="searchInput" placeholder="พิมพ์คำบาลีที่ต้องการค้น..." autofocus>
             </div>
-            <div class="dict-filters" id="dictFilters">
-                <span class="filter-label">เลือกพจนานุกรม:</span>
-                <button class="dict-pill active" data-dict="ALL">ทั้งหมด</button>
-                <button class="dict-pill active" data-dict="ET">ET</button>
-                <button class="dict-pill active" data-dict="SU">SU</button>
-                <button class="dict-pill active" data-dict="TW">TW</button>
-                <button class="dict-pill active" data-dict="DC1">DC1</button>
-                <button class="dict-pill active" data-dict="DC2">DC2</button>
-                <button class="dict-pill active" data-dict="BB">BB</button>
-                <button class="dict-pill active" data-dict="DMC">DMC</button>
-                <button class="dict-pill active" data-dict="NG">NG</button>
-                <button class="dict-pill active" data-dict="PD">PD</button>
-                <button class="dict-pill active" data-dict="THATU">THATU</button>
+            <div class="dict-filters-wrapper">
+                <div class="dict-filters" id="dictFilters">
+                    <span class="filter-label">เลือกพจนานุกรม:</span>
+                    <button class="dict-pill active" data-dict="ALL">ทั้งหมด</button>
+                    <button class="dict-pill active" data-dict="ET">ET</button>
+                    <button class="dict-pill active" data-dict="SU">SU</button>
+                    <button class="dict-pill active" data-dict="TW">TW</button>
+                    <button class="dict-pill active" data-dict="DC1">DC1</button>
+                    <button class="dict-pill active" data-dict="DC2">DC2</button>
+                    <button class="dict-pill active" data-dict="BB">BB</button>
+                    <button class="dict-pill active" data-dict="DMC">DMC</button>
+                    <button class="dict-pill active" data-dict="NG">NG</button>
+                    <button class="dict-pill active" data-dict="PD">PD</button>
+                    <button class="dict-pill active" data-dict="THATU">THATU</button>
+                </div>
+                <div class="info-btn-container">
+                    <button id="infoBtn" class="info-btn" aria-label="หมายเหตุ">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </button>
+                    <div id="infoPopover" class="info-popover hidden">
+                        <div class="popover-title">ข้อมูลรวม 10 พจนานุกรม (รวมคำศัพท์มากกว่า 115,000+ รายการ):</div>
+                        <div class="popover-content">
+                            <div><strong>ALL</strong> (ค้นทั้งหมด)</div>
+                            <div><strong>ET</strong> (E-Tipitaka)</div>
+                            <div><strong>SU</strong> (อาจารย์สุภีร์ ทุมทอง)</div>
+                            <div><strong>TW</strong> (ThaiWare)</div>
+                            <div><strong>DC1</strong> (กิริยากิตก์ ธรรมเจดีย์)</div>
+                            <div><strong>DC2</strong> (กิริยาอาขยาต ธรรมเจดีย์)</div>
+                            <div><strong>BB</strong> (PTS ภูมิพโลภิกขุ)</div>
+                            <div><strong>DMC</strong> (DMC Pali Dictionary)</div>
+                            <div><strong>NG</strong> (ThaiPaliNewGenDic)</div>
+                            <div><strong>PD</strong> (พจนานุกรมไทย-บาลี/บาลี-ไทย palidict.com)</div>
+                            <div><strong>THATU</strong> (พจนานุกรมธาตุ palidict.com)</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <button id="themeToggle" class="theme-toggle" aria-label="สลับธีม">

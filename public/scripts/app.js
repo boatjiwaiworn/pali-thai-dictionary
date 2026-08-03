@@ -102,6 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return selected.length > 0 ? selected : null;
     };
 
+    // Info Popover Toggle (Click only, no hover)
+    const infoBtn = document.getElementById('infoBtn');
+    const infoPopover = document.getElementById('infoPopover');
+
+    if (infoBtn && infoPopover) {
+        infoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            infoPopover.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!infoPopover.classList.contains('hidden')) {
+                if (!infoPopover.contains(e.target) && !infoBtn.contains(e.target)) {
+                    infoPopover.classList.add('hidden');
+                }
+            }
+        });
+    }
+
     const performSearch = async (query) => {
         showLoading();
         try {
