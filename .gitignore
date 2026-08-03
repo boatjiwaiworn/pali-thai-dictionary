@@ -1,0 +1,19 @@
+node_modules/
+*.log
+.env
+
+# Exclude large/unused data
+data/db/
+data/text/
+data/full-tree.json
+
+# Only keep Thai dicts, exclude all others
+data/dicts/en-*
+data/dicts/si-*
+data/dicts/my-*
+data/dicts/ch-*
+data/dicts/es-*
+data/dicts/hi-*
+data/dicts/in-*
+data/dicts/kh-*
+data/dicts/pt-*

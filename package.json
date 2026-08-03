@@ -1,0 +1,19 @@
+{
+  "name": "pali-thai-dictionary",
+  "version": "1.1.0",
+  "description": "พจนานุกรมบาลี-ไทย — Pali-Thai Dictionary",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "compression": "^1.8.0",
+    "cors": "^2.8.6",
+    "express": "^5.1.0",
+    "sql.js": "^1.12.0"
+  }
+}

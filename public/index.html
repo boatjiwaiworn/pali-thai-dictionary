@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>พจนานุกรมบาลี-ไทย</title>
+    <meta name="description" content="พจนานุกรมบาลี-ไทย ค้นหาคำศัพท์บาลี ค้นย้อนกลับไทย→บาลี">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&family=Sarabun:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo">
+            <i class="fa-solid fa-dharmachakra"></i>
+            <h1>พจนานุกรมบาลี</h1>
+        </div>
+        <div class="search-container">
+            <div class="search-modes">
+                <button class="mode-btn active" data-mode="dict"><i class="fa-solid fa-spell-check"></i> พจนานุกรม</button>
+                <button class="mode-btn" data-mode="reverse"><i class="fa-solid fa-arrows-left-right"></i> ไทย→บาลี</button>
+            </div>
+            <div class="search-input-wrapper">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="พิมพ์คำบาลีที่ต้องการค้น..." autofocus>
+            </div>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="สลับธีม">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+
+    <main class="main-content full-width">
+        <div id="contentArea" class="content-area">
+            <div class="empty-state">
+                <i class="fa-solid fa-book-open-reader"></i>
+                <p>พิมพ์คำค้นด้านบนเพื่อเริ่มค้นหา</p>
+                <span class="hint">ค้นบาลี→ไทย หรือ สลับโหมด ไทย→บาลี</span>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
