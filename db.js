@@ -17,6 +17,8 @@ const THAI_DICTS = [
   { file: 'th-bhumibol.db', short: 'BB' },
   { file: 'th-dmc.db', short: 'DMC' },
   { file: 'th-newgen.db', short: 'NG' },
+  { file: 'th-pd.db', short: 'PD' },
+  { file: 'th-thatu.db', short: 'THATU' },
 ];
 
 // Thai → Sinhala converter
