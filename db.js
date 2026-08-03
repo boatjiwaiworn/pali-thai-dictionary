@@ -16,6 +16,7 @@ const THAI_DICTS = [
   { file: 'th-dhamma-cheti-2.db', short: 'DC2' },
   { file: 'th-bhumibol.db', short: 'BB' },
   { file: 'th-dmc.db', short: 'DMC' },
+  { file: 'th-newgen.db', short: 'NG' },
 ];
 
 // Thai → Sinhala converter
