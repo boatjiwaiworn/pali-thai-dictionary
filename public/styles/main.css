@@ -222,14 +222,22 @@ body {
 .theme-toggle {
     background: transparent;
     border: none;
+    outline: none;
     color: var(--text-color);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
     transition: background-color 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .theme-toggle:hover { background-color: rgba(139, 69, 19, 0.1); }
+.theme-toggle:focus, .theme-toggle:focus-visible,
+button:focus, button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
 
 /* Main Content — full width, no sidebar */
 .main-content {
