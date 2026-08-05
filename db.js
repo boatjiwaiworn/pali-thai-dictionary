@@ -19,6 +19,10 @@ const THAI_DICTS = [
   { file: 'th-newgen.db', short: 'NG' },
   { file: 'th-pd.db', short: 'PD' },
   { file: 'th-thatu.db', short: 'THATU' },
+  { file: 'th-ptp.db', short: 'PTP' },
+  { file: 'th-pm.db', short: 'PM' },
+  { file: 'th-td.db', short: 'TD' },
+  { file: 'th-ps.db', short: 'PS' },
 ];
 
 // Thai → Sinhala converter
