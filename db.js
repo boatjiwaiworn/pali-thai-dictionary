@@ -132,6 +132,9 @@ export function reverseSearchDict(thaiTerm, limit = 200, dicts = null) {
     if (THAI_HEADWORD_DICTS.includes(short)) {
       // Search by Thai headword (word column)
       sql = 'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit';
+    } else if (short === 'PM') {
+      // Search by both Thai definition and headword
+      sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term OR word LIKE $term LIMIT $limit';
     } else {
       // Search by Thai definition (meaning column)
       sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit';

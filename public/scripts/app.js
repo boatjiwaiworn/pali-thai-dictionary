@@ -171,12 +171,43 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = `<div class="results-header">พบ ${results.length} ผลลัพธ์สำหรับ "${query}"</div><div class="results-list">`;
         results.forEach(r => {
             const dictName = r.dictName || '';
-            const isThaiHeadword = (dictName === 'PD' || dictName === 'PS');
-            const word = isThaiHeadword ? (r.word || '') : sinhalaToThai(r.word || '');
+            const isThaiHeadwordDict = (dictName === 'PD' || dictName === 'PS');
+
+            let word = '';
+            let isThaiTitle = isThaiHeadwordDict;
+
+            if (isThaiHeadwordDict) {
+                word = r.word || '';
+            } else if (dictName === 'PM' && currentMode === 'reverse') {
+                const rawMeaning = stripHTML(r.meaning || '');
+                let cleaned = rawMeaning.replace(/^[\s\(（]*(\(\([^\)]+\)\)|\([^\)]+\))[\)\）\s]*/, '').trim();
+                let foundTitle = '';
+
+                if (query && cleaned.includes(query)) {
+                    const parts = cleaned.split(/[\.;]/);
+                    for (const p of parts) {
+                        const trimmed = p.trim();
+                        if (trimmed.includes(query) && trimmed.length < 120) {
+                            foundTitle = trimmed;
+                            break;
+                        }
+                    }
+                }
+
+                if (foundTitle) {
+                    word = foundTitle;
+                    isThaiTitle = true;
+                } else {
+                    word = sinhalaToThai(r.word || '');
+                }
+            } else {
+                word = sinhalaToThai(r.word || '');
+            }
+
             const meaning = stripHTML(r.meaning || '');
             const snippet = meaning.length > 400 ? meaning.substring(0, 400) + '…' : meaning;
 
-            const highlightedTitle = isThaiHeadword ? highlightTerm(word, query) : word;
+            const highlightedTitle = isThaiTitle ? highlightTerm(word, query) : highlightTerm(word, query);
             const highlightedSnippet = highlightTerm(snippet, query);
 
             html += `<div class="result-item">
