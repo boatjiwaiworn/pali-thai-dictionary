@@ -169,16 +169,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let html = `<div class="results-header">พบ ${results.length} ผลลัพธ์สำหรับ "${query}"</div><div class="results-list">`;
         results.forEach(r => {
-            const word = sinhalaToThai(r.word || '');
+            const dictName = r.dictName || '';
+            const isThaiHeadword = (dictName === 'PD' || dictName === 'PTP' || dictName === 'PS');
+            const word = isThaiHeadword ? (r.word || '') : sinhalaToThai(r.word || '');
             const meaning = stripHTML(r.meaning || '');
             const snippet = meaning.length > 400 ? meaning.substring(0, 400) + '…' : meaning;
-            const dictName = r.dictName || '';
-            const highlighted = highlightTerm(snippet, query);
+
+            const highlightedTitle = isThaiHeadword ? highlightTerm(word, query) : word;
+            const highlightedSnippet = highlightTerm(snippet, query);
 
             html += `<div class="result-item">
                 <span class="result-badge">${dictName}</span>
-                <span class="result-title pali-text">${word}</span>
-                <span class="result-snippet">${highlighted}</span>
+                <span class="result-title pali-text">${highlightedTitle}</span>
+                <span class="result-snippet">${highlightedSnippet}</span>
             </div>`;
         });
         html += '</div>';

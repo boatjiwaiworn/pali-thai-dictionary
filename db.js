@@ -103,11 +103,16 @@ function makeFlexPattern(sinhWord) {
   return pattern + '%';
 }
 
+const THAI_HEADWORD_DICTS = ['PD', 'PTP', 'PS'];
+
 export function searchDict(word, limit = 200, dicts = null) {
   const sinhWord = thaiToSinhala(word);
   const pattern = makeFlexPattern(sinhWord);
   const results = [];
   for (const { short, db } of dictDbs) {
+    // Exclude Thai->Pali dictionaries (PD, PTP, PS) from Pali->Thai search mode
+    if (THAI_HEADWORD_DICTS.includes(short)) continue;
+
     if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
     const rows = execQuery(db, 
       'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit', 
@@ -123,10 +128,17 @@ export function reverseSearchDict(thaiTerm, limit = 200, dicts = null) {
   const results = [];
   for (const { short, db } of dictDbs) {
     if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
-    const rows = execQuery(db,
-      'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit',
-      { $term: pattern, $limit: limit }
-    );
+
+    let sql;
+    if (THAI_HEADWORD_DICTS.includes(short)) {
+      // Search by Thai headword (word column)
+      sql = 'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit';
+    } else {
+      // Search by Thai definition (meaning column)
+      sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit';
+    }
+
+    const rows = execQuery(db, sql, { $term: pattern, $limit: limit });
     rows.forEach(row => results.push({ dictName: short, word: row.word, meaning: row.meaning }));
   }
   return results;
