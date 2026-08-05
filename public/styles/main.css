@@ -60,12 +60,12 @@ body {
     white-space: nowrap;
 }
 .app-logo-img {
-    width: 48px;
-    height: 48px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .logo h1 { font-size: 1.8rem; font-weight: 600; }
 
