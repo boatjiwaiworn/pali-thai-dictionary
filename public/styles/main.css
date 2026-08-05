@@ -30,7 +30,7 @@
 
 body {
     font-family: 'TH Sarabun New', 'THSarabunNew', 'Sarabun', 'Leelawadee UI', Tahoma, sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.65rem;
     line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -44,10 +44,10 @@ body {
 /* Header */
 .app-header {
     background-color: var(--header-bg);
-    padding: 12px 20px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
 }
@@ -55,25 +55,25 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: var(--accent-color);
     white-space: nowrap;
 }
-.logo i { font-size: 1.3rem; }
-.logo h1 { font-size: 1.2rem; font-weight: 600; }
+.logo i { font-size: 1.95rem; }
+.logo h1 { font-size: 1.8rem; font-weight: 600; }
 
-.search-container { flex: 1; display: flex; flex-direction: column; gap: 8px; max-width: 700px; }
+.search-container { flex: 1; display: flex; flex-direction: column; gap: 10px; max-width: 800px; }
 
-.search-modes { display: flex; gap: 6px; }
+.search-modes { display: flex; gap: 8px; }
 
 .mode-btn {
-    padding: 6px 14px;
+    padding: 8px 18px;
     border: 1px solid var(--border-color);
     background: transparent;
     color: var(--text-color);
     border-radius: 20px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 1.3rem;
     font-family: inherit;
     transition: all 0.2s;
     white-space: nowrap;
@@ -84,24 +84,25 @@ body {
     color: #fff;
     border-color: var(--accent-color);
 }
-.mode-btn i { margin-right: 4px; }
+.mode-btn i { margin-right: 6px; }
 
 .search-input-wrapper { position: relative; }
 .search-icon {
     position: absolute;
-    left: 12px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+    font-size: 1.3rem;
 }
 #searchInput {
     width: 100%;
-    padding: 10px 12px 10px 36px;
+    padding: 12px 14px 12px 44px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background: var(--content-bg);
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-family: inherit;
     outline: none;
     transition: border-color 0.2s;
@@ -112,7 +113,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
     position: relative;
     width: 100%;
 }
@@ -120,27 +121,27 @@ body {
 .dict-filters {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
-    padding-top: 2px;
+    padding-top: 4px;
     flex: 1;
 }
 
 .filter-label {
-    font-size: 0.75rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
     font-weight: 500;
     white-space: nowrap;
 }
 
 .dict-pill {
-    padding: 2px 8px;
+    padding: 4px 12px;
     border: 1px solid var(--border-color);
     background: transparent;
     color: var(--text-muted);
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
-    font-size: 0.75rem;
+    font-size: 1.15rem;
     font-family: inherit;
     font-weight: 500;
     transition: all 0.2s;
@@ -169,7 +170,7 @@ body {
     background: transparent;
     border: none;
     color: #e53e3e;
-    font-size: 1.15rem;
+    font-size: 1.75rem;
     cursor: pointer;
     padding: 4px;
     border-radius: 4px;
@@ -185,16 +186,16 @@ body {
     position: absolute;
     right: 0;
     top: calc(100% + 8px);
-    width: 320px;
+    width: 420px;
     background-color: #ffffff;
     border: 1px solid #1a1a1a;
     border-radius: 6px;
-    padding: 12px 14px;
+    padding: 16px 18px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     z-index: 9999;
     color: #1a1a1a;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 1.25rem;
     line-height: 1.5;
     text-align: left;
 }
@@ -205,14 +206,15 @@ body {
 
 .popover-title {
     font-weight: 700;
-    margin-bottom: 8px;
-    padding-bottom: 6px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
     border-bottom: 1px solid #e2e8f0;
     color: #1a202c;
+    font-size: 1.3rem;
 }
 
 .popover-content div {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     color: #2d3748;
 }
 
@@ -226,7 +228,7 @@ body {
     border: none;
     outline: none;
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
@@ -253,7 +255,7 @@ button:focus, button:focus-visible {
 
 .content-area {
     background-color: var(--content-bg);
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     padding: 30px;
     border-radius: 8px;
@@ -274,23 +276,23 @@ button:focus, button:focus-visible {
     text-align: center;
 }
 .empty-state i, .error-state i {
-    font-size: 3rem;
+    font-size: 4.5rem;
     margin-bottom: 15px;
     opacity: 0.5;
 }
 .hint {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     margin-top: 8px;
     opacity: 0.6;
 }
 
 /* Results */
 .results-header {
-    font-size: 0.85rem;
+    font-size: 1.3rem;
     color: var(--text-muted);
-    padding: 0 0 12px 0;
+    padding: 0 0 14px 0;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .results-list { display: flex; flex-direction: column; }
@@ -298,8 +300,8 @@ button:focus, button:focus-visible {
 .result-item {
     display: flex;
     align-items: baseline;
-    gap: 10px;
-    padding: 10px 12px;
+    gap: 12px;
+    padding: 12px 14px;
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.15s;
 }
@@ -308,36 +310,36 @@ button:focus, button:focus-visible {
 .result-badge {
     flex-shrink: 0;
     display: inline-block;
-    padding: 2px 8px;
+    padding: 3px 10px;
     background-color: var(--accent-color);
     color: #fff;
-    border-radius: 3px;
-    font-size: 0.7rem;
+    border-radius: 4px;
+    font-size: 1.05rem;
     font-weight: 600;
-    min-width: 30px;
+    min-width: 45px;
     text-align: center;
 }
 
 .result-title {
     flex-shrink: 0;
-    min-width: 70px;
+    min-width: 100px;
     font-weight: 700;
     color: #b91c1c;
-    font-size: 1.15rem;
+    font-size: 1.75rem;
 }
 
 .result-snippet {
     flex: 1;
-    font-size: 1.1rem;
+    font-size: 1.65rem;
     color: var(--text-color);
-    line-height: 1.65;
+    line-height: 1.7;
     word-break: break-word;
 }
 
 mark {
     background-color: var(--highlight-bg);
     color: inherit;
-    padding: 1px 2px;
+    padding: 1px 3px;
     border-radius: 2px;
 }
 
