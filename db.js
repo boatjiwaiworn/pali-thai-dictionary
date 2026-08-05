@@ -17,7 +17,6 @@ const THAI_DICTS = [
   { file: 'th-bhumibol.db', short: 'BB' },
   { file: 'th-dmc.db', short: 'DMC' },
   { file: 'th-newgen.db', short: 'NG' },
-  { file: 'th-pm.db', short: 'PM' },
   { file: 'th-pd.db', short: 'PD' },
   { file: 'th-ps.db', short: 'PS' },
   { file: 'th-thatu.db', short: 'THATU' },
@@ -109,7 +108,7 @@ export function searchDict(word, limit = 200, dicts = null) {
   const pattern = makeFlexPattern(sinhWord);
   const results = [];
   for (const { short, db } of dictDbs) {
-    // Exclude Thai->Pali dictionaries (PD, PTP, PS) from Pali->Thai search mode
+    // Exclude Thai->Pali dictionaries (PD, PS) from Pali->Thai search mode
     if (THAI_HEADWORD_DICTS.includes(short)) continue;
 
     if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
@@ -132,9 +131,6 @@ export function reverseSearchDict(thaiTerm, limit = 200, dicts = null) {
     if (THAI_HEADWORD_DICTS.includes(short)) {
       // Search by Thai headword (word column)
       sql = 'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit';
-    } else if (short === 'PM') {
-      // Search by both Thai definition and headword
-      sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term OR word LIKE $term LIMIT $limit';
     } else {
       // Search by Thai definition (meaning column)
       sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit';
