@@ -1,5 +1,9 @@
 export function sinhalaToThai(text) {
     if (!text) return '';
+    // If text does not contain Sinhala script characters, return as-is
+    if (!/[\u0D80-\u0DFF]/.test(text)) {
+        return text;
+    }
     const map = {
         'ක': 'ก', 'ඛ': 'ข', 'ග': 'ค', 'ඝ': 'ฆ', 'ඞ': 'ง',
         'ච': 'จ', 'ඡ': 'ฉ', 'ජ': 'ช', 'ඣ': 'ฌ', 'ඤ': 'ญ',
