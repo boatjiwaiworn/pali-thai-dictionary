@@ -29,7 +29,9 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Noto Sans Thai', sans-serif;
+    font-family: 'TH Sarabun New', 'THSarabunNew', 'Sarabun', 'Leelawadee UI', Tahoma, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
     background-color: var(--bg-color);
     color: var(--text-color);
     height: 100vh;
@@ -318,17 +320,17 @@ button:focus, button:focus-visible {
 
 .result-title {
     flex-shrink: 0;
-    min-width: 80px;
-    font-weight: 500;
-    color: var(--pali-color);
-    font-size: 0.95rem;
+    min-width: 70px;
+    font-weight: 700;
+    color: #b91c1c;
+    font-size: 1.15rem;
 }
 
 .result-snippet {
     flex: 1;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--text-color);
-    line-height: 1.6;
+    line-height: 1.65;
     word-break: break-word;
 }
 
