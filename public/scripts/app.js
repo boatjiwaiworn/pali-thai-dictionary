@@ -72,7 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const dictCode = pill.dataset.dict;
             if (dictCode === 'ALL') {
                 const isAllActive = allPill.classList.contains('active');
-                if (!isAllActive) {
+                if (isAllActive) {
+                    // Toggle off: deselect all dictionaries
+                    dictPills.forEach(p => p.classList.remove('active'));
+                } else {
+                    // Toggle on: select all dictionaries
                     dictPills.forEach(p => p.classList.add('active'));
                 }
             } else {
@@ -82,9 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     allPill.classList.add('active');
                 } else {
                     allPill.classList.remove('active');
-                }
-                if (activeIndiv.length === 0) {
-                    dictPills.forEach(p => p.classList.add('active'));
                 }
             }
             
@@ -99,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         individualPills.forEach(p => {
             if (p.classList.contains('active')) selected.push(p.dataset.dict);
         });
-        return selected.length > 0 ? selected : null;
+        return selected;
     };
 
     // Info Popover Toggle (Click only, no hover)
