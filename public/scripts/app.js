@@ -103,6 +103,64 @@ document.addEventListener('DOMContentLoaded', () => {
         return selected;
     };
 
+    // Stats & Visitor Counter Logic
+    const statsBtn = document.getElementById('statsBtn');
+    const statsPopover = document.getElementById('statsPopover');
+    const statTodayVisits = document.getElementById('statTodayVisits');
+    const statTotalVisits = document.getElementById('statTotalVisits');
+    const statTodaySearches = document.getElementById('statTodaySearches');
+    const statTotalSearches = document.getElementById('statTotalSearches');
+
+    const updateStatsUI = (stats) => {
+        if (!stats) return;
+        if (statTodayVisits) statTodayVisits.textContent = (stats.todayVisits || 0).toLocaleString();
+        if (statTotalVisits) statTotalVisits.textContent = (stats.totalVisits || 0).toLocaleString();
+        if (statTodaySearches) statTodaySearches.textContent = (stats.todaySearches || 0).toLocaleString();
+        if (statTotalSearches) statTotalSearches.textContent = (stats.totalSearches || 0).toLocaleString();
+    };
+
+    const fetchStats = async () => {
+        try {
+            const res = await fetch('/api/stats');
+            const data = await res.json();
+            updateStatsUI(data);
+        } catch (e) {
+            console.error('Error fetching stats:', e);
+        }
+    };
+
+    const recordPageVisit = async () => {
+        try {
+            const res = await fetch('/api/stats/visit', { method: 'POST' });
+            const data = await res.json();
+            updateStatsUI(data);
+        } catch (e) {
+            console.error('Error recording visit:', e);
+        }
+    };
+
+    // Record visit on page load
+    recordPageVisit();
+
+    if (statsBtn && statsPopover) {
+        statsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (infoPopover) infoPopover.classList.add('hidden');
+            statsPopover.classList.toggle('hidden');
+            if (!statsPopover.classList.contains('hidden')) {
+                fetchStats();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!statsPopover.classList.contains('hidden')) {
+                if (!statsPopover.contains(e.target) && !statsBtn.contains(e.target)) {
+                    statsPopover.classList.add('hidden');
+                }
+            }
+        });
+    }
+
     // Info Popover Toggle (Click only, no hover)
     const infoBtn = document.getElementById('infoBtn');
     const infoPopover = document.getElementById('infoPopover');
@@ -110,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (infoBtn && infoPopover) {
         infoBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (statsPopover) statsPopover.classList.add('hidden');
             infoPopover.classList.toggle('hidden');
         });
 
@@ -139,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const results = Array.isArray(data) ? data : [];
             renderResults(results, query);
-        } catch (error) {
-            showError('เกิดข้อผิดพลาด: ' + error.message);
-            console.error(error);
+            fetchStats();
+        } catch (err) {
+            showError('เกิดข้อผิดพลาดในการค้นหา');
         }
     };
 

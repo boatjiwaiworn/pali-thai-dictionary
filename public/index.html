@@ -47,9 +47,45 @@
                     <button class="dict-pill active" data-dict="THATU2">THATU2</button>
                 </div>
                 <div class="info-btn-container">
-                    <button id="infoBtn" class="info-btn" aria-label="หมายเหตุ">
+                    <button id="statsBtn" class="stats-btn" aria-label="สถิติการใช้งาน" title="สถิติการใช้งาน">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </button>
+                    <button id="infoBtn" class="info-btn" aria-label="หมายเหตุ" title="ข้อมูลพจนานุกรม">
                         <i class="fa-solid fa-bookmark"></i>
                     </button>
+                    <div id="statsPopover" class="stats-popover hidden">
+                        <div class="stats-title"><i class="fa-solid fa-chart-line"></i> สถิติการใช้งาน</div>
+                        <div class="stats-grid">
+                            <div class="stats-card">
+                                <div class="stats-card-icon"><i class="fa-solid fa-eye"></i></div>
+                                <div class="stats-card-info">
+                                    <span class="stats-card-label">การเข้าชมวันนี้</span>
+                                    <span id="statTodayVisits" class="stats-card-value">0</span>
+                                </div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-card-icon"><i class="fa-solid fa-users"></i></div>
+                                <div class="stats-card-info">
+                                    <span class="stats-card-label">การเข้าชมทั้งหมด</span>
+                                    <span id="statTotalVisits" class="stats-card-value">0</span>
+                                </div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                                <div class="stats-card-info">
+                                    <span class="stats-card-label">การค้นหาวันนี้</span>
+                                    <span id="statTodaySearches" class="stats-card-value">0</span>
+                                </div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-card-icon"><i class="fa-solid fa-fire"></i></div>
+                                <div class="stats-card-info">
+                                    <span class="stats-card-label">การค้นหาทั้งหมด</span>
+                                    <span id="statTotalSearches" class="stats-card-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div id="infoPopover" class="info-popover hidden">
                         <div class="popover-title">ข้อมูลรวม 12 พจนานุกรม (รวมคำศัพท์มากกว่า 120,000+ รายการ):</div>
                         <div class="popover-content">

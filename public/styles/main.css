@@ -173,6 +173,23 @@ body {
     flex-shrink: 0;
 }
 
+.stats-btn {
+    background: transparent;
+    border: none;
+    color: #2b6cb0;
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 4px;
+    margin-right: 6px;
+    border-radius: 4px;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.stats-btn:hover {
+    color: #2c5282;
+    transform: scale(1.1);
+}
+
 .info-btn {
     background: transparent;
     border: none;
@@ -187,6 +204,103 @@ body {
 .info-btn:hover {
     color: #c53030;
     transform: scale(1.1);
+}
+
+.stats-popover {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: 380px;
+    background-color: #ffffff;
+    border: 1px solid #2b6cb0;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    color: #1a1a1a;
+    font-family: inherit;
+    text-align: left;
+}
+
+[data-theme="dark"] .stats-popover {
+    background-color: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+.stats-popover.hidden {
+    display: none;
+}
+
+.stats-title {
+    font-weight: 700;
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #2b6cb0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+[data-theme="dark"] .stats-title {
+    color: #63b3ed;
+    border-bottom-color: #4a5568;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stats-card {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+[data-theme="dark"] .stats-card {
+    background-color: #1a202c;
+    border-color: #4a5568;
+}
+
+.stats-card-icon {
+    font-size: 1.5rem;
+    color: #3182ce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-card-label {
+    font-size: 1rem;
+    color: #718096;
+}
+
+[data-theme="dark"] .stats-card-label {
+    color: #a0aec0;
+}
+
+.stats-card-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    line-height: 1.2;
+}
+
+[data-theme="dark"] .stats-card-value {
+    color: #f7fafc;
 }
 
 .info-popover {
