@@ -40,8 +40,10 @@ const thaiToSinh = new Map([
 
 function thaiToSinhala(text) {
   if (!text) return text;
+  // Normalize ยึสุ -> ยิํสุ, สึ -> สิํ, and ึ -> ิํ in Pali input
+  let normalized = text.replace(/ยึสุ/g, 'ยิํสุ').replace(/สึ/g, 'สิํ').replace(/\u0E36/g, '\u0E34\u0E4D');
   // Reorder leading vowels (เ,โ come before consonant in Thai but after in Sinhala)
-  let t = text.replace(/([เโ])([ก-ฮ])/g, '$2$1');
+  let t = normalized.replace(/([เโ])([ก-ฮ])/g, '$2$1');
   let result = '';
   for (const ch of t) result += thaiToSinh.get(ch) || ch;
   

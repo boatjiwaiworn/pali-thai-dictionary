@@ -1,8 +1,8 @@
 export function sinhalaToThai(text) {
     if (!text) return '';
-    // If text does not contain Sinhala script characters, return as-is
+    // If text does not contain Sinhala script characters, normalize ยึสุ and สึ if present
     if (!/[\u0D80-\u0DFF]/.test(text)) {
-        return text;
+        return text.replace(/ยึสุ/g, 'ยิํสุ').replace(/สึ/g, 'สิํ');
     }
     const map = {
         'ක': 'ก', 'ඛ': 'ข', 'ග': 'ค', 'ඝ': 'ฆ', 'ඞ': 'ง',
@@ -24,5 +24,7 @@ export function sinhalaToThai(text) {
     
     // Swap เ and โ to appear BEFORE consonant
     result = result.replace(/([ก-ฮ])([เโ])/g, '$2$1');
+    // Ensure ยึสุ -> ยิํสุ and สึ -> สิํ
+    result = result.replace(/ยึสุ/g, 'ยิํสุ').replace(/สึ/g, 'สิํ');
     return result;
 }
