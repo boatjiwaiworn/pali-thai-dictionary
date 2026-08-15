@@ -207,8 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const highlightTerm = (text, term) => {
         if (!term || !text) return text || '';
         let escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        escaped = escaped.replace(/ยิํสุ|ยึสุ/g, '(?:ยิํสุ|ยึสุ)');
-        escaped = escaped.replace(/สิํ|สึ/g, '(?:สิํ|สึ)');
+        escaped = escaped.replace(/([ก-ฮ])(?:ิํ|ึ)/g, '$1(?:ิํ|ึ)');
         return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
     };
 

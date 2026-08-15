@@ -124,22 +124,35 @@ export function searchDict(word, limit = 200, dicts = null) {
 }
 
 export function reverseSearchDict(thaiTerm, limit = 200, dicts = null) {
-  const pattern = `%${thaiTerm}%`;
+  const pattern1 = `%${thaiTerm}%`;
+  const altTerm = thaiTerm.includes('\u0E36')
+    ? thaiTerm.replace(/\u0E36/g, '\u0E34\u0E4D')
+    : thaiTerm.replace(/\u0E34\u0E4D/g, '\u0E36');
+  const pattern2 = `%${altTerm}%`;
+
   const results = [];
+  const seenSet = new Set();
+
   for (const { short, db } of dictDbs) {
     if (dicts && Array.isArray(dicts) && dicts.length > 0 && !dicts.includes(short)) continue;
 
     let sql;
     if (THAI_HEADWORD_DICTS.includes(short)) {
       // Search by Thai headword (word column)
-      sql = 'SELECT word, meaning FROM dictionary WHERE word LIKE $term LIMIT $limit';
+      sql = 'SELECT word, meaning FROM dictionary WHERE word LIKE $p1 OR word LIKE $p2 LIMIT $limit';
     } else {
       // Search by Thai definition (meaning column)
-      sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $term LIMIT $limit';
+      sql = 'SELECT word, meaning FROM dictionary WHERE meaning LIKE $p1 OR meaning LIKE $p2 LIMIT $limit';
     }
 
-    const rows = execQuery(db, sql, { $term: pattern, $limit: limit });
-    rows.forEach(row => results.push({ dictName: short, word: row.word, meaning: row.meaning }));
+    const rows = execQuery(db, sql, { $p1: pattern1, $p2: pattern2, $limit: limit });
+    rows.forEach(row => {
+      const key = `${short}_${row.word}_${row.meaning}`;
+      if (!seenSet.has(key)) {
+        seenSet.add(key);
+        results.push({ dictName: short, word: row.word, meaning: row.meaning });
+      }
+    });
   }
   return results;
 }
